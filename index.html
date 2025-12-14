@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
+			charset="utf-8">
+		<meta http-equiv="Cache-control" content="no-cache">
+		<title>收费政策</title>
+
+		<style type="text/css">
+			html {
+				font-size: 13.333vw;
+			}
+
+			body {
+				height: 100%;
+				overflow: hidden;
+			}
+
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				text-decoration: none;
+			}
+
+			.root {
+				padding: 0rem;
+			}
+
+			.dfac {
+				display: flex;
+				width: 100%;
+				height: 100%;
+				flex-direction: row;
+				background: white;
+			}
+
+			.dfrow {
+				display: flex;
+				width: 100%;
+				flex-direction: row;
+				align-items: center;
+			}
+
+			.dfrowWrap {
+				display: flex;
+				width: 100%;
+				flex-direction: row;
+				flex-wrap: wrap;
+			}
+
+			.line {
+				width: 100%;
+				height: 0.02rem;
+				background-color: #CCCCCC;
+				margin-top: 0.4rem;
+			}
+
+			.leftbox {
+				width: 1.9rem;
+				height: 100vh;
+				margin-right: 0.12rem;
+				box-shadow: 0.04rem 0rem 0.12rem 0rem #00000016;
+				overflow-y: scroll;
+				scrollbar-width: none;
+				-ms-overflow-style: none;
+			}
+
+			.leftbox::-webkit-scrollbar {
+				display: none;
+			}
+
+			.tabItem {
+				width: 100%;
+				padding: 0.3rem 0.02rem;
+				display: flex;
+				align-items: center;
+				text-align: center;
+				justify-content: center;
+				flex-direction: column;
+				font-size: 0.24rem;
+				color: #6B6B6B;
+			}
+
+			.sub_title {
+				font-size: 0.18rem;
+				font-weight: 400;
+				text-align: center;
+				color: rgba(107, 107, 107, 1);
+			}
+
+			.sub_title_active {
+				font-size: 0.18rem;
+				font-weight: 400;
+				text-align: center;
+				color: #95734B;
+			}
+
+			.selectItem {
+				color: #95734B;
+			}
+
+			.lineYellow {
+				width: 0.6rem;
+				height: 0.06rem;
+				background: #DDB152;
+				border-radius: 0.3rem;
+				margin-top: 0.04rem;
+			}
+
+			.lineTransparent {
+				width: 0.6rem;
+				height: 0.06rem;
+				background: transparent;
+				border-radius: 0.3rem;
+				margin-top: 0.04rem;
+			}
+
+			.rightbox {
+				flex: 1;
+				height: 100vh;
+				background: white;
+				padding-top: 0.4rem;
+				padding-left: 0.12rem;
+				padding-right: 0.2rem;
+				overflow-y: scroll;
+				scrollbar-width: none;
+				-ms-overflow-style: none;
+			}
+
+			.leftbox::-webkit-scrollbar {
+				display: none;
+			}
+
+			.tip {
+				width: 100%;
+				border: 0.01rem solid #A87811;
+				background: #FFFDFA;
+				padding: 0.3rem 0.04rem 0.3rem 0.12rem;
+				border-radius: 0.16rem;
+			}
+
+			.tiptxt1 {
+				font-size: 0.28rem;
+				color: #2B2B2B;
+				font-weight: bold;
+			}
+
+			.tiptxt2 {
+				font-size: 0.24rem;
+				color: #2B2B2B;
+			}
+
+			.tiptxt2_11 {
+				font-size: 0.22rem;
+				color: #2B2B2B;
+			}
+
+			.tiptxt3 {
+				font-size: 0.26rem;
+				color: #95734B;
+			}
+
+			.tiptxt6 {
+				font-size: 0.24rem;
+				color: #95734B;
+			}
+
+			.tiptxt6_11 {
+				font-size: 0.22rem;
+				color: #95734B;
+			}
+
+			.tiptxtblack11 {
+				font-size: 0.22rem;
+				color: #2B2B2B;
+			}
+
+			.tiptxtgray11 {
+				font-size: 0.22rem;
+				color: #8B8B8B;
+			}
+
+			.tiptxtred {
+				font-size: 0.24rem;
+				color: #E63737;
+			}
+
+			.tiptxt4 {
+				font-size: 0.24rem;
+				color: #8B8B8B;
+			}
+
+			.rightTxt1 {
+				color: #2B2B2B;
+				font-size: 0.26rem;
+				flex: 1;
+			}
+
+			.rightTxtBold {
+				color: #2B2B2B;
+				font-size: 0.26rem;
+				flex: 1;
+				font-weight: bold;
+			}
+
+			.toll {
+				width: 100%;
+				background: #F7F7F7;
+				padding: 0.32rem 0.32rem 0.32rem 0.24rem;
+				border-radius: 0.16rem;
+				margin-bottom: 0.6rem;
+			}
+
+			.rightItem {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				flex-direction: row;
+				margin-bottom: 0.4rem;
+			}
+
+			.rightTxt2 {
+				color: #2B2B2B;
+				font-size: 0.24rem;
+				flex: 1;
+			}
+
+			.rightTxt3 {
+				color: #95734B;
+				font-size: 0.26rem;
+			}
+
+			.rightItemYellow {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				flex-direction: row;
+				background: #DDB152;
+				padding: 0.24rem;
+				border-radius: 0.16rem 0.16rem 0rem 0rem;
+			}
+
+			.rightItemgary {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				flex-direction: row;
+				background: #F7F7F7;
+				padding: 0.2rem;
+				font-size: 0.24rem;
+				color: #8B8B8B;
+				margin-bottom: 0.4rem;
+			}
+
+			.rightTxt4 {
+				color: white;
+				font-size: 0.26rem;
+				flex: 1;
+			}
+
+			.rightTxt5 {
+				color: white;
+				font-size: 0.26rem;
+			}
+
+			.whiteItem {
+				background: white;
+				padding: 0.1rem 0.16rem 0.1rem 0.16rem;
+				border-radius: 0.04rem;
+				margin-top: 0.14rem;
+				font-size: 0.24rem;
+				color: #8B8B8B;
+			}
+
+			.bigItem {
+				width: 100%;
+			}
+
+			.bgGray4 {
+				width: 100%;
+				background: #F7F7F7;
+				padding: 0.2rem 0.24rem 0.2rem 0.24rem;
+				border-radius: 0.08rem;
+			}
+
+			.txtGray {
+				font-size: 0.24rem;
+				color: #8B8B8B;
+			}
+
+			.flex1 {
+				flex: 1;
+			}
+
+			.img20 {
+				width: 0.4rem;
+				height: 0.4rem;
+			}
+
+			.img23 {
+				width: 0.46rem;
+				height: 0.46rem;
+			}
+
+			.img14 {
+				width: 0.28rem;
+				height: 0.28rem;
+			}
+
+			.cannotselect {
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				-khtml-user-selece: none;
+				user-select: none;
+			}
+
+			.couponbox {
+				padding: 0.3rem;
+			}
+
+			.lineGray {
+				width: 100%;
+				height: 0.01rem;
+				background: #D7D7D7;
+			}
+
+			.margintop_2 {
+				margin-top: -0.04rem;
+			}
+
+			.margintop7 {
+				margin-top: 0.14rem;
+			}
+
+			.margintop10 {
+				margin-top: 0.2rem;
+			}
+
+			.margintop12 {
+				margin-top: 0.24rem;
+			}
+
+			.margintop20 {
+				margin-top: 0.4rem;
+			}
+
+			.margintop27 {
+				margin-top: 0.54rem;
+			}
+
+			.margintop30 {
+				margin-top: 0.6rem;
+			}
+
+			.margintop36 {
+				margin-top: 0.72rem;
+			}
+
+			.marginbottom20 {
+				margin-bottom: 0.4rem;
+			}
+
+			.marginleft1 {
+				margin-left: 0.02rem;
+			}
+
+			.marginleft6 {
+				margin-left: 0.12rem;
+			}
+
+			.marginleft10 {
+				margin-left: 0.2rem;
+			}
+
+			.marginleft20 {
+				margin-left: 0.4rem;
+			}
+
+			.h20 {
+				width: 100%;
+				height: 0.4rem;
+			}
+		</style>
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="toast_box">
+			<p id="toast"></p>
+		</div>
+		<div id="app" class="root">
+			<div>
+				<!--top-->
+				<div class="dfac">
+					<div class="leftbox">
+						<div v-for="(item,index) in dataList">
+							<div class="tabItem cannotselect" v-bind:class="{selectItem:index==curIndex}" @click="tabChange(index)">
+								{{item.title}}
+								<div :class="index === curIndex ? 'sub_title_active':'sub_title'" v-if="item.subTitle">
+									{{item.subTitle}}
+								</div>
+								<div v-if="index==curIndex" class="lineYellow"></div>
+								<div v-else class="lineTransparent"></div>
+							</div>
+						</div>
+					</div>
+					<div class="rightbox">
+						<div v-for="(item,index) in dataList">
+							<div v-if="index==curIndex">
+								<!-- 顶部tip -->
+								<div class="tip">
+									<div class="tiptxt1">免费服务</div>
+									<div class="dfrowWrap margintop12">
+										<img class="img20 margintop_2" src="images/icon_free.png">
+										<div class="tiptxt2 marginleft1">家用机包修期：</div>
+										<div class="tiptxt6 flex1">整机{{item.homeTermOne}}，主要部件{{item.homeTermTwo}}</div>
+									</div>
+									<div class="dfrowWrap margintop12">
+										<img class="img20 margintop_2" src="images/icon_free.png">
+										<div class="tiptxt2 marginleft1">公用机包修期：</div>
+										<div class="tiptxt6 flex1">整机{{item.publicTermOne}}，主要部件{{item.publicTermTwo}}
+										</div>
+									</div>
+									<div class="tiptxt6 margintop12">
+										更换的维修配件的保用期：家用机{{item.changeTermOne}}，公用机{{item.changeTermTwo}}</div>
+								</div>
+								<!-- 顶部tip2 -->
+								<div class="tip margintop12">
+									<div class="tiptxt1">收费标准</div>
+									<div class="dfrowWrap margintop12">
+										<img class="img20 margintop_2" src="images/icon_fee.png">
+										<div class="tiptxt2_11 marginleft1">用户支付总费用（冰箱、冰柜用户除外）</div>
+									</div>
+									<div class="tiptxt6_11 marginleft20">维修配件费+维修服务费+长途交通费</div>
+									<div class="dfrowWrap margintop12">
+										<img class="img20 margintop_2" src="images/icon_fee.png">
+										<div class="tiptxt2_11 marginleft1">用户支付总费用（冰箱、冰柜用户）</div>
+									</div>
+									<div class="tiptxt6_11 marginleft20">维修配件费+维修服务费+长途交通费+拉修费</div>
+									<div class="tiptxtgray11 margintop10">
+										<span class="tiptxtblack11">A类地区：</span>
+										北京、上海、天津、广东省、浙江省、江苏省、福建省、其他省会城市、大连市、青岛市
+									</div>
+									<div class="tiptxtgray11 margintop7">
+										<span class="tiptxtblack11">B类地区：</span>
+										除A类以外其他地区，B区域用户可拨打400电话咨询相关费用
+									</div>
+									<div class="tiptxtred margintop12">*包修期外维修服务所发生的费用由用户支付</div>
+								</div>
+								<!-- 上门费 -->
+								<div class="dfrow margintop30 marginbottom20 cannotselect" @click="isShowTollClick(item)">
+									<img class="img23" src="images/icon_toll.png">
+									<div class="rightTxtBold marginleft6">上门长途费</div>
+									<!-- <div class="tiptxt3">0元起</div> -->
+									<img v-if="item.isShowToll" class="img14 marginleft10" src="images/icon_up.png">
+									<img v-else class="img14 marginleft10" src="images/icon_down.png">
+								</div>
+								<div v-if="item.isShowToll" class="toll">
+									<div class="tiptxt2">20公里（含）以内：免费</div>
+									<div class="tiptxt2 margintop10">大于20公里：按S*1元收费（S为单程公里数）</div>
+									<div class="tiptxt4 margintop12">
+										*实际服务距离以上门服务的工程师通过其交通工具从所属的中心/分站或授权网点所在地至用户服务地址的单次最优路线的路程</div>
+								</div>
+								<div class="lineGray"></div>
+								<!-- 人工费 -->
+								<div class="dfrow margintop20">
+									<img class="img23" src="images/icon_man.png">
+									<div class="rightTxtBold marginleft6">人工费</div>
+								</div>
+								<!-- 维修费 -->
+								<div v-if="item.smallMoney.length>0" class="rightItem margintop20 cannotselect"
+									@click="isShowClick(item)">
+									<div class="rightTxt1">维修费</div>
+									<div v-if="item.topMoney" class="rightTxt3">{{item.topMoney}}元</div>
+									<div v-else class="rightTxt3">{{item.smallMoney}}元</div>
+									<img v-if="item.isShow" class="img14 marginleft10" src="images/icon_up.png">
+									<img v-else class="img14 marginleft10" src="images/icon_down.png">
+								</div>
+								<div v-if="item.isShow">
+									<div v-if="item.simpleMoney" class="rightItemYellow">
+										<div class="rightTxt4">简修</div>
+										<div class="rightTxt5">{{item.simpleMoney}}元</div>
+									</div>
+									<div v-if="item.simpleMoney" class="rightItemgary">
+										{{item.simple}}
+									</div>
+									<div v-if="item.smallMoney.length>0" class="rightItemYellow">
+										<div class="rightTxt4">小修</div>
+										<div class="rightTxt5">{{item.smallMoney}}元</div>
+									</div>
+									<div v-if="item.smallMoney.length>0" class="rightItemgary">
+										{{item.small}}
+									</div>
+									<div v-if="item.middleMoney" class="rightItemYellow">
+										<div class="rightTxt4">中修</div>
+										<div class="rightTxt5">{{item.middleMoney}}元</div>
+									</div>
+									<div v-if="item.middleMoney" class="rightItemgary">
+										{{item.middle}}
+									</div>
+									<div v-if="item.bigMoney" class="rightItemYellow">
+										<div class="rightTxt4">大修</div>
+										<div class="rightTxt5">{{item.bigMoney}}元</div>
+									</div>
+									<div v-if="item.bigMoney" class="rightItemgary">
+										<div v-if="item.bigMoneyTwo" class="bigItem">
+											<div class="dfrow">
+												<div class="rightTxt2">{{item.bigTitle}}</div>
+												<div class="tiptxt2">{{item.bigMoney}}元</div>
+											</div>
+											<div class="whiteItem">{{item.big}}</div>
+											<div class="dfrow margintop12">
+												<div class="rightTxt2">{{item.bigTwoTitle}}</div>
+												<div class="tiptxt2">{{item.bigMoneyTwo}}元</div>
+											</div>
+											<div class="whiteItem">{{item.bigTwo}}</div>
+											<div class="dfrow margintop12">
+												<div class="rightTxt2">{{item.bigThreeTitle}}</div>
+												<div class="tiptxt2">{{item.bigMoneyThree}}元</div>
+											</div>
+											<div class="whiteItem">{{item.bigThree}}</div>
+										</div>
+										<div v-else>{{item.big}}</div>
+									</div>
+								</div>
+								<!-- 安装 -->
+								<div v-if="item.install" class="rightItem cannotselect" @click="isShowInstallClick(item)">
+									<div class="rightTxt1">安装</div>
+									<div class="rightTxt3">{{item.install}}元</div>
+									<img v-if="item.isShowInstall" class="img14 marginleft10" src="images/icon_up.png">
+									<img v-else class="img14 marginleft10" src="images/icon_down.png">
+								</div>
+								<div v-if="item.install && item.isShowInstall" class="bgGray4 txtGray marginbottom20">
+									{{item.installTxt}}
+								</div>
+								<!-- 搬运费 -->
+								<div v-if="item.carryMoneyOne" class="rightItem cannotselect" @click="isShowCarryClick(item)">
+									<div class="rightTxt1">搬运费</div>
+									<div class="rightTxt3">{{item.carryMoneyTop}}元</div>
+									<img v-if="item.isShowCarry" class="img14 marginleft10" src="images/icon_up.png">
+									<img v-else class="img14 marginleft10" src="images/icon_down.png">
+								</div>
+								<div v-if="item.carryMoneyOne && item.isShowCarry" class="bgGray4">
+									<div v-if="item.carryMoneyOne" class="dfrow">
+										<div class="rightTxt2">搬运费1</div>
+										<div class="tiptxt2">{{item.carryMoneyOne}}元</div>
+									</div>
+									<div v-if="item.carryMoneyOne" class="whiteItem">{{item.carryOne}}</div>
+									<div v-if="item.carryMoneyTwo" class="dfrow margintop12">
+										<div class="rightTxt2">搬运费2</div>
+										<div class="tiptxt2">{{item.carryMoneyTwo}}元</div>
+									</div>
+									<div v-if="item.carryMoneyTwo" class="whiteItem">{{item.carryTwo}}</div>
+									<div v-if="item.carryMoneyThree" class="dfrow">
+										<div class="rightTxt2">搬运费3</div>
+										<div class="tiptxt2">{{item.carryMoneyThree}}元</div>
+									</div>
+									<div v-if="item.carryMoneyThree" class="whiteItem">{{item.carryThree}}</div>
+									<div v-if="item.carryMoneyFour" class="dfrow margintop12">
+										<div class="rightTxt2">搬运费4</div>
+										<div class="tiptxt2">{{item.carryMoneyFour}}元</div>
+									</div>
+									<div v-if="item.carryFour" class="whiteItem">{{item.carryFour}}</div>
+								</div>
+								<div class="h20"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script>
+			var vue = new Vue({
+				el: "#app",
+				data: {
+					curIndex: 0,
+					dataList: [{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "波轮洗衣机",
+							install: "40-60",
+							installTxt: "上门安装",
+							simple: "上门咨询、鉴定、调试",
+							small: "更换大、中修以外的其他配件（未换件服务属于简修）",
+							middle: "电机、吊杆、电脑板、显示板、电解控制板、盖/桶开关组件、超音波泵、面架、各类线束、排水泵、电源变压器、电解槽完成、脱水桶、法兰、平衡环、循环水道、喇叭组件、溢水软管等",
+							big: "箱体、离合器、外桶、分洗桶、分洗桶电机带轮、分洗桶皮带、排水内管A/B、排水阀（分洗）、喷水环等",
+							topMoney: "40-120",
+							simpleMoney: "40-60",
+							smallMoney: "60-80",
+							middleMoney: "80-100",
+							bigMoney: "100-120",
+							homeTermOne: "3年",
+							homeTermTwo: "3年",
+							publicTermOne: "3个月",
+							publicTermTwo: "半年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "滚筒洗衣机",
+							install: "50-70",
+							installTxt: "上门安装",
+							simple: "上门咨询、鉴定、调试",
+							small: "更换大、中修以外的其他配件（未换件服务属于简修）",
+							middle: "串激电机、变频电机、减振器、电脑板、显示板、超音波泵、电解槽完成、电源变压器、风扇电机、烘干加热管、定位电机、霍尔电脑板、烘道组件、各类减振弹簧、进水阀弯管、面架、外桶盖、门盖组件/门盖密封圈、扇叶、臭氧发生器、电解水发生器等",
+							big: "轴承、水封、内桶、外桶、箱体、平衡环、外桶法兰（A、B）完成、内桶法兰（A、B）完成、各类线束/组件等",
+							topMoney: "50-150",
+							simpleMoney: "50-70",
+							smallMoney: "70-100",
+							middleMoney: "100-120",
+							bigMoney: "120-150",
+							homeTermOne: "3年",
+							homeTermTwo: "3年",
+							publicTermOne: "3个月",
+							publicTermTwo: "半年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "干衣机",
+							install: "50-70",
+							installTxt: "上门安装",
+							simple: "上门咨询、鉴定、调试",
+							small: "更换大、中修以外的其他配件（未换件服务属于简修）",
+							middle: "串激电机、变频电机、减振器、电脑板、显示板、超音波泵、电解槽完成、电源变压器、风扇电机、烘干加热管、定位电机、霍尔电脑板、烘道组件、各类减振弹簧、进水阀弯管、面架、外桶盖、门盖组件/门盖密封圈、扇叶、臭氧发生器、电解水发生器等",
+							big: "轴承、水封、内桶、外桶、箱体、平衡环、外桶法兰（A、B）完成、内桶法兰（A、B）完成、各类线束/组件等",
+							topMoney: "50-150",
+							simpleMoney: "50-70",
+							smallMoney: "70-100",
+							middleMoney: "100-120",
+							bigMoney: "120-150",
+							homeTermOne: "3年",
+							homeTermTwo: "3年",
+							publicTermOne: "3个月",
+							publicTermTwo: "半年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "双桶洗衣机",
+							simple: "上门咨询、鉴定、调试",
+							small: "更换大、中修以外的其他配件（未换件服务属于简修）",
+							middle: "排水阀、齿轮箱、电机、定时器、仪表板、仪表板座、刹车制动轮、密封圈、底座",
+							big: "箱体、连体桶",
+							topMoney: "40-100",
+							simpleMoney: "40-50",
+							smallMoney: "50-70",
+							middleMoney: "70-80",
+							bigMoney: "80-100",
+							homeTermOne: "1年",
+							homeTermTwo: "3年",
+							publicTermOne: "3个月",
+							publicTermTwo: "半年",
+							changeTermOne: "1个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "冰箱/酒柜",
+							subTitle: "(冰柜、嵌入式冰箱)",
+							install: "150-180",
+							installTxt: "嵌入式安装",
+							simple: "实际费用",
+							small: "更换搁板抽屉、托盘、果菜盒、蛋架、压缩机后盖板、灯泡、灯座、门灯开关、电源线、底梁挡盖、调平（节）脚、门封条等",
+							middle: "门体、翻转粱、温控器、NTC温度传感器、电加热器、PTC组件、主控板、显控（示）板、修补内胆（不开后背）、鉴定内漏、电动风门、冷冻风机等",
+							big: "过滤器、漏点检修、管路堵塞、电磁阀",
+							bigTitle: "漏点检修",
+							bigTwo: "压缩机、冷冻蒸发器",
+							bigTwoTitle: "换压缩机",
+							bigThree: "外挂冷凝器、开后背维修（冷藏蒸发器漏，处理冷藏室下水口结冰，修补内胆等）",
+							bigThreeTitle: "开后背维修",
+							carryOne: "仅大修拉修260L以下",
+							carryTwo: "仅大修拉修260L-400L",
+							carryThree: "仅大修拉修400L-500L",
+							carryFour: "仅大修拉修500L以上",
+							topMoney: "40-300",
+							simpleMoney: "40-50",
+							smallMoney: "50-70",
+							middleMoney: "70-100",
+							bigMoney: "150-170",
+							bigMoneyTwo: "220-240",
+							bigMoneyThree: "280-300",
+							carryMoneyTop: "150-300",
+							carryMoneyOne: "150",
+							carryMoneyTwo: "200",
+							carryMoneyThree: "250",
+							carryMoneyFour: "300",
+							homeTermOne: "1年",
+							homeTermTwo: "3年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "1个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "小家电",
+							small: "上门服务",
+							smallMoney: "30",
+							homeTermOne: "1年",
+							homeTermTwo: "1年",
+							publicTermOne: "3个月",
+							publicTermTwo: "半年",
+							changeTermOne: "1个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "电饭煲",
+							small: "实际费用",
+							smallMoney: "30",
+							homeTermOne: "1年",
+							homeTermTwo: "1年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "1个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "空气净化器",
+							small: "调整、鉴定",
+							middle: "后盖、内出风罩、外出风罩、传感器口盖、电源线组件、控制板丝印完成、显示板完成A、显示板盒、透明塑贴、按键A、电解槽盖、本体、控制塑贴印刷完成、电解槽隔板、显示板完成B、风道组件完成、传感器组件、叶轮、电机、负离子发生器、前盖、磁铁组件、复合过滤器组件、预过滤网组件等",
+							topMoney: "30-50",
+							smallMoney: '30',
+							middleMoney: '50',
+							homeTermOne: "1年",
+							homeTermTwo: "1年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "1个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "洁身器",
+							install: "40",
+							installTxt: "上门安装",
+							small: "上门调试（非更换配件类）",
+							middle: "PE水管、加热管、电源开关、电源线、保险丝组件、水位开关、水温传感器、温控开关、进水阀、步进电机、线路板组件、风机、除臭部件、变压器、出水阀、水泵、人体感应器、暖风加热丝、操作面贴、恒流阀、按键板、座圈传感器、阻尼体、水箱密封圈、水箱右盖、水箱左盖、塑料三通、尼龙扣等",
+							topMoney: "30-50",
+							smallMoney: "30",
+							middleMoney: "50",
+							homeTermOne: "1年",
+							homeTermTwo: "1年",
+							publicTermOne: "3个月",
+							publicTermTwo: "半年",
+							changeTermOne: "1个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "洗碗机",
+							install: "60",
+							installTxt: "上门安装",
+							small: "除大中修以外配件，调整",
+							middle: "电脑板、定时器、流量计（呼吸器），控制面板，浊度传感器，电磁阀",
+							big: "内胆，加热器，洗涤泵、水软化器",
+							topMoney: "50-120",
+							smallMoney: "50",
+							middleMoney: "70",
+							bigMoney: "120",
+							homeTermOne: "1年",
+							homeTermTwo: "3年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "咖啡机",
+							install: "50",
+							installTxt: "上门安装",
+							small: "除大中修以外配件，调整",
+							middle: "电脑板、定时器、流量计（呼吸器），控制面板，浊度传感器，电磁阀",
+							big: "内胆，加热器，洗涤泵、水软化器",
+							topMoney: "50-120",
+							smallMoney: "50",
+							middleMoney: "70",
+							bigMoney: "120",
+							homeTermOne: "1年",
+							homeTermTwo: "1年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "烤箱/暖碟机",
+							install: "50",
+							installTxt: "上门安装",
+							small: "除大中修以外配件，调整",
+							middle: "电脑板",
+							big: "电机、加热管",
+							topMoney: "40-70",
+							smallMoney: "40",
+							middleMoney: "50",
+							bigMoney: "70",
+							homeTermOne: "1年",
+							homeTermTwo: "1年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "消毒柜/蒸箱",
+							install: "50",
+							installTxt: "上门安装",
+							small: "除大中修以外配件，调整",
+							middle: "电脑板",
+							big: "电机、加热管",
+							topMoney: "40-70",
+							smallMoney: "40",
+							middleMoney: "50",
+							bigMoney: "70",
+							homeTermOne: "1年",
+							homeTermTwo: "3年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "蒸烤一体机",
+							install: "50",
+							installTxt: "上门安装",
+							small: "除大中修以外配件，调整",
+							middle: "电脑板",
+							big: "电机、加热管",
+							topMoney: "40-70",
+							smallMoney: "40",
+							middleMoney: "50",
+							bigMoney: "70",
+							homeTermOne: "1年",
+							homeTermTwo: "3年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "电磁灶/燃气灶",
+							install: "50",
+							installTxt: "上门安装",
+							small: "电机",
+							middle: "线圈盘、IGBT驱动板、电脑板",
+							topMoney: "40-50",
+							smallMoney: "40",
+							middleMoney: "50",
+							homeTermOne: "1年",
+							homeTermTwo: "3年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "脱排油烟机",
+							install: "50",
+							installTxt: "上门安装",
+							small: "除大中修以外配件，调整",
+							middle: "开关",
+							big: "电机、风叶",
+							topMoney: "40-70",
+							smallMoney: "40",
+							middleMoney: "50",
+							bigMoney: "70",
+							homeTermOne: "1年",
+							homeTermTwo: "1年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "垃圾处理器",
+							install: "50",
+							installTxt: "上门安装",
+							small: "除中修以外配件，调整",
+							middle: "遥控开关、空气开关",
+							topMoney: "30-50",
+							smallMoney: "30",
+							middleMoney: "50",
+							homeTermOne: "1年",
+							homeTermTwo: "3年",
+							publicTermOne: "3个月",
+							publicTermTwo: "半年",
+							changeTermOne: "1个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							title: "集成灶",
+							install: "200",
+							installTxt: "上门安装",
+							small: "除大中修以外配件，调整",
+							middle: "开关",
+							big: "电机、风叶",
+							topMoney: "40-70",
+							smallMoney: "40",
+							middleMoney: "50",
+							bigMoney: "70",
+							homeTermOne: "1年",
+							homeTermTwo: "1年",
+							publicTermOne: "1年",
+							publicTermTwo: "1年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+						{
+							isShow: false,
+							isShowToll: false,
+							isShowInstall: false,
+							isShowCarry: false,
+							install: "150",
+							installTxt: "上门安装",
+							title: "衣物护理机",
+							small: "更换大、中修以外的其他配件属于小修",
+							middle: "电脑板、电脑显示板、电脑驱动板、LED 显示屏、顶梁、底梁、中梁、10go灯、送风道(灰色)、回风道组件、香薰盒分配器、护理机门体总成、人体感应模块等。",
+							big: "热泵系统总成、显示板线束等",
+							smallMoney: "100",
+							middleMoney: "150",
+							bigMoney: "200",
+							homeTermOne: "3年",
+							homeTermTwo: "3年",
+							publicTermOne: "3个月",
+							publicTermTwo: "半年",
+							changeTermOne: "3个月",
+							changeTermTwo: "1个月",
+						},
+					],
+				},
+				methods: {
+					toast(text) {
+						var toast = document.getElementById('toast');
+						var toast_box = document.getElementsByClassName('toast_box')[0];
+						toast.innerHTML = text;
+						toast_box.style.display = 'flex';
+						setTimeout(() => {
+							toast_box.style.display = 'none';
+						}, 2000)
+					},
+					tabChange(index) {
+						this.curIndex = index;
+					},
+					isShowClick(item) {
+						item.isShow = !item.isShow;
+					},
+					isShowTollClick(item) {
+						item.isShowToll = !item.isShowToll;
+					},
+					isShowInstallClick(item) {
+						item.isShowInstall = !item.isShowInstall;
+					},
+					isShowCarryClick(item) {
+						item.isShowCarry = !item.isShowCarry;
+					},
+				}
+			})
+		</script>
+
+
+	</body>
+
+</html>
