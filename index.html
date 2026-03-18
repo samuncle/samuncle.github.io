@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>英语动画学习资源导航</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* 顶部横幅 */
+    .hero {
+      background: linear-gradient(135deg, #ff6b35, #f7931e, #ffcd3c);
+      padding: 48px 24px 40px;
+      text-align: center;
+      color: white;
+    }
+    .hero .fox-emoji { font-size: 64px; display: block; margin-bottom: 12px; }
+    .hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .hero p { font-size: 15px; opacity: 0.92; }
+
+    /* 搜索框 */
+    .search-wrap {
+      max-width: 520px;
+      margin: -22px auto 0;
+      padding: 0 16px;
+      position: relative;
+      z-index: 10;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 50px;
+      border: none;
+      font-size: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      outline: none;
+    }
+
+    /* 分级说明 */
+    .level-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 28px 16px 8px;
+    }
+    .level-tag {
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .level-tag.all    { background:#e8eaf6; color:#3949ab; }
+    .level-tag.l1     { background:#e8f5e9; color:#2e7d32; }
+    .level-tag.l2     { background:#fff8e1; color:#f57f17; }
+    .level-tag.l3     { background:#fce4ec; color:#c62828; }
+    .level-tag.cn     { background:#fff0f0; color:#c0392b; }
+    .level-tag.intl   { background:#e8f4fd; color:#1565c0; }
+    .level-tag.active { border-color: currentColor; }
+
+    .level-divider {
+      width: 1px;
+      height: 24px;
+      background: #ddd;
+      margin: 0 4px;
+      align-self: center;
+    }
+
+    /* 内容区 */
+    .container { max-width: 1100px; margin: 0 auto; padding: 16px 16px 60px; }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 28px 0 14px;
+      padding-left: 10px;
+      border-left: 4px solid #ff6b35;
+      color: #222;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+    }
+
+    .card-thumb {
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      position: relative;
+    }
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.9);
+    }
+    .badge-free  { color: #2e7d32; }
+    .badge-l1    { color: #2e7d32; }
+    .badge-l2    { color: #f57f17; }
+    .badge-l3    { color: #c62828; }
+
+    .card-body { padding: 14px 16px 16px; flex: 1; }
+    .card-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+    .card-body p  { font-size: 13px; color: #666; line-height: 1.55; }
+    .card-tags { padding: 0 16px 14px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 10px;
+      background: #f0f4f8;
+      color: #555;
+    }
+
+    .card-btn {
+      margin: 0 16px 16px;
+      display: block;
+      text-align: center;
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      padding: 9px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .card-btn:hover { opacity: 0.88; }
+
+    /* 隐藏过滤 */
+    .card.hidden { display: none; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="fox-emoji">🦊</span>
+  <h1>英语动画学习导航</h1>
+  <p>精选免费英语动画资源 · 适合各年龄段 · 双击即可打开观看</p>
+</div>
+
+<div class="search-wrap">
+  <input type="text" id="searchInput" placeholder="🔍 搜索资源名称或关键词..." oninput="filterCards()" />
+</div>
+
+<div class="level-bar">
+  <span class="level-tag all active" onclick="setLevel('all', this)">全部</span>
+  <span class="level-tag l1" onclick="setLevel('l1', this)">🟢 初级（幼儿 / 零基础）</span>
+  <span class="level-tag l2" onclick="setLevel('l2', this)">🟡 中级（小学）</span>
+  <span class="level-tag l3" onclick="setLevel('l3', this)">🔴 进阶（初中+）</span>
+  <div class="level-divider"></div>
+  <span class="level-tag cn" onclick="setLevel('cn', this)">🇨🇳 国内平台</span>
+  <span class="level-tag intl" onclick="setLevel('intl', this)">🌐 境外平台</span>
+</div>
+
+<div class="container">
+
+  <!-- Little Fox 官方 -->
+  <div class="section-title">🦊 Little Fox 官方免费内容</div>
+  <div class="grid">
+
+    <a class="card" href="https://www.youtube.com/@LittleFoxKids" target="_blank" data-level="l1" data-region="intl" data-name="Little Fox YouTube 官方频道">
+      <div class="card-thumb" style="background:#fff3e0;">🦊<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>Little Fox YouTube 官方频道</h3>
+        <p>官方在 YouTube 上发布的免费动画，Level 1–3 均有，适合幼儿到小学。</p>
+      </div>
+      <div class="card-tags"><span class="tag">Level 1-3</span><span class="tag">YouTube</span><span class="tag">官方正版</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.littlefox.com/en/foxschool/list?category=song" target="_blank" data-level="l1" data-region="intl" data-name="Little Fox 免费歌曲动画">
+      <div class="card-thumb" style="background:#f3e5f5;">🎵<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>Little Fox 免费歌曲动画</h3>
+        <p>官网提供部分免费歌曲动画，韵律感强，适合幼儿启蒙英语。</p>
+      </div>
+      <div class="card-tags"><span class="tag">歌曲</span><span class="tag">幼儿</span><span class="tag">官网</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+  </div>
+
+  <!-- 初级 -->
+  <div class="section-title">🟢 初级推荐（幼儿 / 零基础）</div>
+  <div class="grid">
+
+    <a class="card" href="https://www.youtube.com/@sesamestreet" target="_blank" data-level="l1" data-region="intl" data-name="Sesame Street 芝麻街">
+      <div class="card-thumb" style="background:#e8f5e9;">🐤<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>Sesame Street 芝麻街</h3>
+        <p>全球最经典英语启蒙节目，发音标准清晰，陪伴几代人成长，官方 YouTube 全免费。</p>
+      </div>
+      <div class="card-tags"><span class="tag">经典</span><span class="tag">幼儿</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.youtube.com/@PinkfongEnglish" target="_blank" data-level="l1" data-region="intl" data-name="Pinkfong 鲨鱼宝宝">
+      <div class="card-thumb" style="background:#e3f2fd;">🦈<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>Pinkfong 鲨鱼宝宝</h3>
+        <p>Baby Shark 出品，大量英语儿歌动画，节奏朗朗上口，零基础适用。</p>
+      </div>
+      <div class="card-tags"><span class="tag">儿歌</span><span class="tag">幼儿</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.youtube.com/@SuperSimpleSongs" target="_blank" data-level="l1" data-region="intl" data-name="Super Simple Songs">
+      <div class="card-thumb" style="background:#fce4ec;">🌈<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>Super Simple Songs</h3>
+        <p>专为幼儿设计的英语启蒙歌曲动画，语速慢，发音纯正，内容丰富。</p>
+      </div>
+      <div class="card-tags"><span class="tag">歌曲</span><span class="tag">幼儿</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://pbskids.org/" target="_blank" data-level="l1" data-region="intl" data-name="PBS Kids">
+      <div class="card-thumb" style="background:#f9fbe7;">📺<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>PBS Kids</h3>
+        <p>美国公共电视台儿童频道，全免费，涵盖 Curious George、Daniel Tiger 等经典动画。</p>
+      </div>
+      <div class="card-tags"><span class="tag">美国官方</span><span class="tag">多系列</span><span class="tag">免费</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.youtube.com/@CocomeionNurseryRhymes" target="_blank" data-level="l1" data-region="intl" data-name="CoComelon">
+      <div class="card-thumb" style="background:#e0f7fa;">👶<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>CoComelon</h3>
+        <p>全球订阅量最高的儿童频道之一，3D 动画儿歌，日常生活场景英语，极适合幼儿。</p>
+      </div>
+      <div class="card-tags"><span class="tag">3D动画</span><span class="tag">日常英语</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+  </div>
+
+  <!-- 中级 -->
+  <div class="section-title">🟡 中级推荐（小学阶段）</div>
+  <div class="grid">
+
+    <a class="card" href="https://www.youtube.com/@CartoonNetwork" target="_blank" data-level="l2" data-region="intl" data-name="Cartoon Network">
+      <div class="card-thumb" style="background:#fff8e1;">🎬<span class="card-badge badge-l2">中级</span></div>
+      <div class="card-body">
+        <h3>Cartoon Network</h3>
+        <p>Adventure Time、We Bare Bears 等热门动画，语言地道活泼，适合有基础的小学生。</p>
+      </div>
+      <div class="card-tags"><span class="tag">地道口语</span><span class="tag">小学</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.youtube.com/@StorylineOnline" target="_blank" data-level="l2" data-region="intl" data-name="Storyline Online">
+      <div class="card-thumb" style="background:#f3e5f5;">📚<span class="card-badge badge-l2">中级</span></div>
+      <div class="card-body">
+        <h3>Storyline Online</h3>
+        <p>好莱坞演员朗读绘本动画，语音标准优美，是练习听力和语感的绝佳材料。</p>
+      </div>
+      <div class="card-tags"><span class="tag">绘本</span><span class="tag">听力</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.youtube.com/@NatGeoKids" target="_blank" data-level="l2" data-region="intl" data-name="National Geographic Kids">
+      <div class="card-thumb" style="background:#e8f5e9;">🌍<span class="card-badge badge-l2">中级</span></div>
+      <div class="card-body">
+        <h3>National Geographic Kids</h3>
+        <p>国家地理儿童版，动物自然科普动画，词汇量丰富，兼顾英语学习和科学知识。</p>
+      </div>
+      <div class="card-tags"><span class="tag">科普</span><span class="tag">自然</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.youtube.com/@EnglishSingsing" target="_blank" data-level="l2" data-region="intl" data-name="English Singsing">
+      <div class="card-thumb" style="background:#e3f2fd;">🎶<span class="card-badge badge-l2">中级</span></div>
+      <div class="card-body">
+        <h3>English Singsing</h3>
+        <p>专为小学生设计的英语学习动画，涵盖日常对话、语法、单词，系统性强。</p>
+      </div>
+      <div class="card-tags"><span class="tag">系统学习</span><span class="tag">对话</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+  </div>
+
+  <!-- 进阶 -->
+  <div class="section-title">🔴 进阶推荐（初中及以上）</div>
+  <div class="grid">
+
+    <a class="card" href="https://www.youtube.com/@TED-Ed" target="_blank" data-level="l3" data-region="intl" data-name="TED-Ed">
+      <div class="card-thumb" style="background:#fce4ec;">💡<span class="card-badge badge-l3">进阶</span></div>
+      <div class="card-body">
+        <h3>TED-Ed</h3>
+        <p>TED 出品的教育动画，涵盖科学、历史、文学等各类话题，适合提升英语听力与词汇。</p>
+      </div>
+      <div class="card-tags"><span class="tag">科普</span><span class="tag">听力</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.youtube.com/@EnglishwithLucy" target="_blank" data-level="l3" data-region="intl" data-name="English with Lucy">
+      <div class="card-thumb" style="background:#f3e5f5;">🇬🇧<span class="card-badge badge-l3">进阶</span></div>
+      <div class="card-body">
+        <h3>English with Lucy</h3>
+        <p>英国口音英语教学视频，语法、发音、口语均有，适合想提升英式英语的学习者。</p>
+      </div>
+      <div class="card-tags"><span class="tag">英式英语</span><span class="tag">语法</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.youtube.com/@VOALearningEnglish" target="_blank" data-level="l3" data-region="intl" data-name="VOA Learning English">
+      <div class="card-thumb" style="background:#e8f5e9;">📡<span class="card-badge badge-l3">进阶</span></div>
+      <div class="card-body">
+        <h3>VOA Learning English</h3>
+        <p>美国之音慢速英语，语速适中，发音标准，适合想学地道美式英语的进阶学习者。</p>
+      </div>
+      <div class="card-tags"><span class="tag">美式英语</span><span class="tag">新闻</span><span class="tag">YouTube</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+  </div>
+
+  <!-- 学习工具 -->
+  <div class="section-title">🛠️ 配套学习工具</div>
+  <div class="grid">
+
+    <a class="card" href="https://www.duolingo.com/" target="_blank" data-level="all" data-region="intl" data-name="多邻国 Duolingo">
+      <div class="card-thumb" style="background:#f9fbe7;">🦉<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>多邻国 Duolingo</h3>
+        <p>游戏化英语学习，每天练习配合动画观看，效果加倍，完全免费。</p>
+      </div>
+      <div class="card-tags"><span class="tag">配套练习</span><span class="tag">游戏化</span><span class="tag">免费</span></div>
+      <span class="card-btn">去练习 →</span>
+    </a>
+
+    <a class="card" href="https://www.vocabulary.com/" target="_blank" data-level="all" data-region="intl" data-name="Vocabulary.com 单词学习">
+      <div class="card-thumb" style="background:#e3f2fd;">📖<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>Vocabulary.com</h3>
+        <p>看动画时遇到不懂的单词，可以在这里查找并记忆，配有例句和发音。</p>
+      </div>
+      <div class="card-tags"><span class="tag">单词</span><span class="tag">例句</span><span class="tag">发音</span></div>
+      <span class="card-btn">去查词 →</span>
+    </a>
+
+    <a class="card" href="https://www.languagereactor.com/" target="_blank" data-level="all" data-region="intl" data-name="Language Reactor 双语字幕">
+      <div class="card-thumb" style="background:#fce4ec;">🎯<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>Language Reactor</h3>
+        <p>Chrome 插件，看 YouTube 视频时自动显示双语字幕，点击单词即可查词，学习神器。</p>
+      </div>
+      <div class="card-tags"><span class="tag">Chrome插件</span><span class="tag">双语字幕</span><span class="tag">查词</span></div>
+      <span class="card-btn">安装插件 →</span>
+    </a>
+
+  </div>
+
+  <!-- 国内平台资源 -->
+  <div class="section-title">🇨🇳 国内平台资源（无需翻墙）</div>
+  <div class="grid">
+
+    <a class="card" href="https://www.littlefox.com/cn" target="_blank" data-level="l1" data-region="cn" data-name="Little Fox 中文官网">
+      <div class="card-thumb" style="background:#fff3e0;">🦊<span class="card-badge badge-free">官方</span></div>
+      <div class="card-body">
+        <h3>Little Fox 中文官网</h3>
+        <p>Little Fox 官方中文版，国内可直接访问，提供免费试看内容，Level 1–3 部分免费，界面支持中文。</p>
+      </div>
+      <div class="card-tags"><span class="tag">官方正版</span><span class="tag">国内可访问</span><span class="tag">部分免费</span></div>
+      <span class="card-btn">立即访问 →</span>
+    </a>
+
+    <a class="card" href="https://www.littlefox.com/cn/free" target="_blank" data-level="l1" data-region="cn" data-name="Little Fox 免费体验专区">
+      <div class="card-thumb" style="background:#e8f5e9;">🎁<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>Little Fox 免费体验专区</h3>
+        <p>官方专门开放的免费内容入口，无需注册即可观看精选动画，国内可正常访问。</p>
+      </div>
+      <div class="card-tags"><span class="tag">免费</span><span class="tag">无需注册</span><span class="tag">国内可访问</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.youku.com/profile/index?uid=UMTIwMTczNTI1Ng%3D%3D" target="_blank" data-level="l1" data-region="cn" data-name="Little Fox 优酷官方频道">
+      <div class="card-thumb" style="background:#fff8e1;">📺<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>Little Fox 优酷官方频道</h3>
+        <p>Little Fox 在优酷的官方自频道，发布英语动画片，国内直接访问，无需翻墙，含字母家庭、彼得兔等系列。</p>
+      </div>
+      <div class="card-tags"><span class="tag">优酷</span><span class="tag">官方授权</span><span class="tag">国内可访问</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://list.youku.com/albumlist/show/id_51896194.html" target="_blank" data-level="l1" data-region="cn" data-name="Little Fox 彼得兔 优酷">
+      <div class="card-thumb" style="background:#f3e5f5;">🐰<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>彼得兔和他的朋友们（优酷）</h3>
+        <p>Little Fox 改编经典童话，优酷官方播放列表，国内可直接观看，语言纯正适合入门。</p>
+      </div>
+      <div class="card-tags"><span class="tag">优酷</span><span class="tag">经典童话</span><span class="tag">初级</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.bilibili.com/list/ml2692381694?oid=953605289&bvid=BV1Vs4y1g75w" target="_blank" data-level="l1" data-region="cn" data-name="Super Simple Songs B站合集">
+      <div class="card-thumb" style="background:#fce4ec;">🌈<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>Super Simple Songs（B站合集）</h3>
+        <p>B站收录的 142 首英语启蒙儿歌动画，含动画+音频+中英双语字幕，适合 2–8 岁，国内直接播放。</p>
+      </div>
+      <div class="card-tags"><span class="tag">B站</span><span class="tag">双语字幕</span><span class="tag">142首</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.bilibili.com/list/ml1866623484?oid=768103790&bvid=BV1ar4y1n7kL" target="_blank" data-level="l1" data-region="cn" data-name="芝麻街 Sesame Street B站">
+      <div class="card-thumb" style="background:#e8f5e9;">🐤<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>芝麻街 Sesame Street（B站）</h3>
+        <p>经典英语启蒙节目 B站合集，39 集完整版，发音标准清晰，幼儿英语启蒙首选，国内直接播放。</p>
+      </div>
+      <div class="card-tags"><span class="tag">B站</span><span class="tag">经典</span><span class="tag">幼儿启蒙</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://v.qq.com/x/cover/mzc002007gjuekp/c0033fcso9r.html" target="_blank" data-level="l1" data-region="cn" data-name="芝麻街 腾讯视频">
+      <div class="card-thumb" style="background:#e3f2fd;">📡<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>芝麻街 第44季（腾讯视频）</h3>
+        <p>腾讯视频上的英文版芝麻街，重点培养孩子的自我管理和执行能力，含丰富教育主题，国内直接播放。</p>
+      </div>
+      <div class="card-tags"><span class="tag">腾讯视频</span><span class="tag">英文原版</span><span class="tag">教育</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://tv.sohu.com/v/dXMvMzQ4NzIxNDEwLzM3Njc0NDA1OS5zaHRtbA==.html" target="_blank" data-level="l1" data-region="cn" data-name="Wow English 搜狐视频">
+      <div class="card-thumb" style="background:#fff0f0;">👦<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>Wow English 英语启蒙（搜狐）</h3>
+        <p>550 集英文字幕版，Steve 真人出镜配英语动画，0–8 岁趣味启蒙，搜狐视频免费播放。</p>
+      </div>
+      <div class="card-tags"><span class="tag">搜狐视频</span><span class="tag">真人+动画</span><span class="tag">550集</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://v.qq.com/x/page/j33646c55hh.html" target="_blank" data-level="l1" data-region="cn" data-name="儿童英语启蒙动画 腾讯视频1200集">
+      <div class="card-thumb" style="background:#f9fbe7;">🎠<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>儿童英语启蒙动画全集（腾讯视频）</h3>
+        <p>腾讯视频收录的 1200 集儿童英语启蒙动画合集，每天一集磨耳朵，适合系统入门。</p>
+      </div>
+      <div class="card-tags"><span class="tag">腾讯视频</span><span class="tag">1200集</span><span class="tag">磨耳朵</span></div>
+      <span class="card-btn">立即观看 →</span>
+    </a>
+
+    <a class="card" href="https://www.tuxiaobei.com/english" target="_blank" data-level="l1" data-region="cn" data-name="兔小贝英语学习网站">
+      <div class="card-thumb" style="background:#e0f7fa;">🐰<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>兔小贝英语学习网站</h3>
+        <p>国内专注儿童英语启蒙网站，涵盖动物名称、日常用语、礼貌用语等主题动画，纯免费，国内可访问。</p>
+      </div>
+      <div class="card-tags"><span class="tag">国内网站</span><span class="tag">儿童启蒙</span><span class="tag">完全免费</span></div>
+      <span class="card-btn">立即学习 →</span>
+    </a>
+
+  </div>
+
+  <!-- 国内配套工具 -->
+  <div class="section-title">🛠️ 国内配套学习工具</div>
+  <div class="grid">
+
+    <a class="card" href="https://www.hongenfamily.com/" target="_blank" data-level="l1" data-region="cn" data-name="洪恩英语 App">
+      <div class="card-thumb" style="background:#e8f5e9;">🌟<span class="card-badge badge-l1">初级</span></div>
+      <div class="card-body">
+        <h3>洪恩英语</h3>
+        <p>基于美国 K-12 教学体系，通过互动视频和游戏让幼儿学英语，国内知名儿童英语启蒙 App，含大量英语动画。</p>
+      </div>
+      <div class="card-tags"><span class="tag">国内App</span><span class="tag">幼儿</span><span class="tag">互动游戏</span></div>
+      <span class="card-btn">去体验 →</span>
+    </a>
+
+    <a class="card" href="https://www.yuketang.cn/" target="_blank" data-level="l2" data-region="cn" data-name="雨课堂英语">
+      <div class="card-thumb" style="background:#e3f2fd;">🏫<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>学而思网校（英语视频）</h3>
+        <p>国内大型在线教育平台，小学英语视频资源丰富，含动画讲解，部分内容免费，适合小学阶段系统学习。</p>
+      </div>
+      <div class="card-tags"><span class="tag">国内平台</span><span class="tag">小学</span><span class="tag">系统课程</span></div>
+      <span class="card-btn">去学习 →</span>
+    </a>
+
+    <a class="card" href="https://fanyi.baidu.com/" target="_blank" data-level="all" data-region="cn" data-name="百度翻译">
+      <div class="card-thumb" style="background:#fff8e1;">🔤<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>百度翻译</h3>
+        <p>看动画遇到生词即时翻译，支持语音输入、拍照翻译，国内最方便的在线翻译工具，随时查词。</p>
+      </div>
+      <div class="card-tags"><span class="tag">国内工具</span><span class="tag">即时翻译</span><span class="tag">完全免费</span></div>
+      <span class="card-btn">去查词 →</span>
+    </a>
+
+    <a class="card" href="https://dict.youdao.com/" target="_blank" data-level="all" data-region="cn" data-name="有道词典">
+      <div class="card-thumb" style="background:#fce4ec;">📗<span class="card-badge badge-free">免费</span></div>
+      <div class="card-body">
+        <h3>有道词典</h3>
+        <p>国内最常用英语词典，发音标准，含例句、词根词缀分析，看动画时查生词首选，App 和网页均可用。</p>
+      </div>
+      <div class="card-tags"><span class="tag">国内工具</span><span class="tag">词典</span><span class="tag">发音</span></div>
+      <span class="card-btn">去查词 →</span>
+    </a>
+
+  </div>
+
+</div>
+
+<footer>
+  📌 境外平台资源需要网络条件支持 · 国内平台资源无需翻墙直接访问 · 所有内容均为官方或授权资源
+</footer>
+
+<script>
+  let currentLevel = 'all';
+  let currentRegion = 'all';
+
+  function setLevel(level, el) {
+    // 如果点的是 region 标签
+    if (level === 'cn' || level === 'intl') {
+      currentRegion = (currentRegion === level) ? 'all' : level;
+      document.querySelectorAll('.level-tag.cn, .level-tag.intl').forEach(t => t.classList.remove('active'));
+      if (currentRegion !== 'all') el.classList.add('active');
+    } else {
+      // level 标签
+      currentLevel = level;
+      document.querySelectorAll('.level-tag.all, .level-tag.l1, .level-tag.l2, .level-tag.l3').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+    filterCards();
+  }
+
+  function filterCards() {
+    const keyword = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.card').forEach(card => {
+      const name = (card.dataset.name || '').toLowerCase();
+      const text = card.innerText.toLowerCase();
+      const level = card.dataset.level;
+      const region = card.dataset.region || 'intl';
+
+      const matchLevel = currentLevel === 'all' || level === currentLevel || level === 'all';
+      const matchRegion = currentRegion === 'all' || region === currentRegion;
+      const matchKeyword = !keyword || name.includes(keyword) || text.includes(keyword);
+
+      card.classList.toggle('hidden', !(matchLevel && matchRegion && matchKeyword));
+    });
+
+    // 隐藏空 section（section-title 下面没有可见卡片时隐藏整个 section）
+    document.querySelectorAll('.section-title').forEach(title => {
+      const grid = title.nextElementSibling;
+      if (!grid) return;
+      const visibleCards = grid.querySelectorAll('.card:not(.hidden)');
+      title.style.display = visibleCards.length === 0 ? 'none' : '';
+      grid.style.display = visibleCards.length === 0 ? 'none' : '';
+    });
+  }
+</script>
+
+</body>
+</html>
